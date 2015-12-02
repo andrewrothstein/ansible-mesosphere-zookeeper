@@ -1,0 +1,24 @@
+---
+- name: install zookeeper
+  yum: state=present name=mesosphere-zookeeper
+
+- name: set myid
+  template: >
+    src=var/lib/zookeeper/myid.j2
+    dest=/var/lib/zookeeper/myid
+    owner=root
+    group=root
+    mode=0644
+
+- name: install zoo.cfg, etc.
+  template: >
+    src=etc/zookeeper/conf/{{item}}.j2
+    dest=/etc/zookeeper/conf/{{item}}
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - zoo.cfg
+    - log4j.properties
+    - environment
+

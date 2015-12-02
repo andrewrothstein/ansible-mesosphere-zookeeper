@@ -1,0 +1,29 @@
+---
+
+# gotta install the config before the package. Ubuntu is stinky because it
+# launches the service upon installation leaving not enough time to configure
+
+- name: create /etc/zookeeper/conf
+  file: >-
+    owner=root
+    group=root
+    mode="go-w"
+    path=/etc/zookeeper/conf
+    state=directory
+
+- name: set myid, install zoo.cfg
+  template: >
+    src=etc/zookeeper/conf/{{item}}.j2
+    dest=/etc/zookeeper/conf/{{item}}
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - myid
+    - zoo.cfg
+    - log4j.properties
+    - environment
+
+- name: install zookeeper
+  apt: state=present name=mesos
+
