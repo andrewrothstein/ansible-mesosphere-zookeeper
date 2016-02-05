@@ -1,11 +1,11 @@
 ---
 - name: (RedHat) configure...
   when: ansible_os_family == 'RedHat'
-  include: 'RedHat.yml'
+  include: RedHat.yml
 
 - name: (Debian) configure...
   when: ansible_os_family == 'Debian'
-  include: 'Debian.yml'
+  include: Debian.yml
 
 - name: launch zookeeper
-  service: name=zookeeper enabled=yes state=restarted
+  service: name=zookeeper enabled=yes state=started

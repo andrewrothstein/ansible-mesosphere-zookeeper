@@ -1,6 +1,6 @@
 ---
 - name: install zookeeper
-  yum: state=present name=mesosphere-zookeeper
+  package: state=present name=mesosphere-zookeeper
 
 - name: set myid
   template: >

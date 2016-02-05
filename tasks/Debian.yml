@@ -25,5 +25,5 @@
     - environment
 
 - name: install zookeeper
-  apt: state=present name=mesos
+  package: state=present name=mesos
 
