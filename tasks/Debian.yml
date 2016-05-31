@@ -7,7 +7,7 @@
   file: >-
     owner=root
     group=root
-    mode="go-w"
+    mode=0755
     path=/etc/zookeeper/conf
     state=directory
 
